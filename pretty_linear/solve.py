@@ -5,6 +5,9 @@ import Crypto
 import binascii
 from hashlib import sha256
 from Crypto.Cipher import AES
+import sys
+from progressbar import ProgressBar
+pbar = ProgressBar()
 
 p = 340282366920938463463374607431768211297
 N = 40
@@ -35,8 +38,12 @@ def solve(m):
 
 	X_det=list()
 
-	for i in range(N):
-		X_det.append(sympy.det(X[i])%p)
+	print("Solving the matrix...")
+	for i in pbar(range(N)):
+		try:
+			X_det.append(sympy.det(X[i])%p)
+		except KeyboardInterrupt:
+			exit()
 
 	key=list()
 
@@ -46,6 +53,7 @@ def solve(m):
 
 if __name__ == '__main__':
 
+	print("Loading the matrix...")
 	matrixfile=open("matrix","r")
 	m0=list()
 
