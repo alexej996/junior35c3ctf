@@ -1,4 +1,4 @@
-#pretty_linear
+# pretty_linear
 
 #### Obtaining the matrix
 First we need to extract the matrix from the packets in **surveillance.pcap**.
@@ -18,7 +18,7 @@ We can use *sed* to remove the "ACCESS GRANTED" packets that we don't need.
 That should leave us with a *data.txt* file that will have challange numbers that are followed by sums.
 If there are any empty lines in data.txt file they should be removed before we raname it to **matrix** so **solve.py** can read it and solve it.
 
-####Solving the matrix
+#### Solving the matrix
 These chalanges when multipled with the keys make a system of linear equations that can be solved with Cramer's rule.
 We just need to make sure to stay in the congruence subgroup of the modulo *p*.
 
